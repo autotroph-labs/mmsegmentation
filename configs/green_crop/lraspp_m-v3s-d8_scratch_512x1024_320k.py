@@ -98,3 +98,9 @@ model = dict(
             type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0)))
 
 runner = dict(type='IterBasedRunner', max_iters=320000)
+checkpoint_config = dict(by_epoch=False, interval=1000)
+evaluation = dict(interval=1000, metric='mIoU', 
+                  pre_eval=True, save_best='mIoU')
+
+workflow = [('train', 1), ('val', 1)]
+cudnn_benchmark = False
