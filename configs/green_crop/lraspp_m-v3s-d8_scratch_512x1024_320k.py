@@ -89,7 +89,7 @@ model = dict(
         channels=128,
         input_transform='multiple_select',
         dropout_ratio=0.1,
-        num_classes=1,
+        num_classes=2,
         norm_cfg=norm_cfg,
         act_cfg=dict(type='ReLU'),
         align_corners=False,
@@ -98,8 +98,8 @@ model = dict(
 
 runner = dict(type='IterBasedRunner', max_iters=320000)
 checkpoint_config = dict(by_epoch=False, interval=1000)
-evaluation = dict(interval=1000, metric='mIoU', 
-                  pre_eval=True, save_best='mIoU')
+evaluation = dict(interval=1000, metric='mDice', 
+                  pre_eval=True, save_best='mDice')
 
 workflow = [('train', 1), ('val', 1)]
 cudnn_benchmark = False
